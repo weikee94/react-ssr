@@ -4,7 +4,7 @@ import renderer from "./helpers/renderer";
 import createStore from "./helpers/createStore";
 import { matchRoutes } from "react-router-config";
 import Routes from "./client/Routes";
-import { loadData } from "./client/components/UsersList";
+import { loadData } from "./client/pages/UsersList";
 const app = express();
 
 app.use(express.static("public"));
