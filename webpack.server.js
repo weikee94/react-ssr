@@ -1,26 +1,17 @@
 const path = require("path");
+const merge = require("webpack-merge");
+const baseConfig = require("./webpack.base.js");
+const webpackNodeExternals = require("webpack-node-externals");
 
-module.exports = {
+const config = {
   target: "node",
   entry: "./src/index.js",
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "build")
   },
-  module: {
-    rules: [
-      {
-        test: /\.js?$/,
-        loader: "babel-loader",
-        exclude: /node_modules/,
-        options: {
-          presets: [
-            "react",
-            "stage-0",
-            ["env", { targers: { browsers: ["last 2 versions"] } }]
-          ]
-        }
-      }
-    ]
-  }
+  // webpackNodeExternals: anything inside the node modules folder dont bundle to server js, so when we start webpack can be faster
+  externals: [webpackNodeExternals()]
 };
+
+module.exports = merge(baseConfig, config);
