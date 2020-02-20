@@ -125,6 +125,8 @@ var _Routes = __webpack_require__(7);
 
 var _Routes2 = _interopRequireDefault(_Routes);
 
+var _reactHelmet = __webpack_require__(9);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (req) {
@@ -133,7 +135,10 @@ exports.default = function (req) {
     { location: req.path, context: {} },
     _react2.default.createElement(_Routes2.default, null)
   ));
-  return "\n    <html>\n        <head></head>\n        <body>\n            <div id=\"root\">" + content + "</div>\n            <script src=\"bundle.js\"></script>\n        </body>\n    </html>\n  ";
+
+  var helmet = _reactHelmet.Helmet.renderStatic();
+
+  return "\n    <html>\n        <head>\n            " + helmet.title.toString() + "\n            " + helmet.meta.toString() + "\n        </head>\n        <body>\n            <div id=\"root\">" + content + "</div>\n            <script src=\"bundle.js\"></script>\n        </body>\n    </html>\n  ";
 };
 
 /***/ }),
@@ -158,6 +163,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
+
+var _reactHelmet = __webpack_require__(9);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -184,6 +191,16 @@ var Home = function (_Component) {
       return _react2.default.createElement(
         "div",
         null,
+        _react2.default.createElement(
+          _reactHelmet.Helmet,
+          null,
+          _react2.default.createElement(
+            "title",
+            null,
+            "Homes"
+          ),
+          _react2.default.createElement("meta", { property: "og:title", content: "Users Homes" })
+        ),
         "Homes"
       );
     }
@@ -221,6 +238,10 @@ var _Home = __webpack_require__(5);
 
 var _Home2 = _interopRequireDefault(_Home);
 
+var _About = __webpack_require__(8);
+
+var _About2 = _interopRequireDefault(_About);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function () {
@@ -228,11 +249,77 @@ exports.default = function () {
     "div",
     null,
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", component: _Home2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: "/hi", component: function component() {
-        return "Hi";
-      } })
+    _react2.default.createElement(_reactRouterDom.Route, { path: "/about", component: _About2.default })
   );
 };
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactHelmet = __webpack_require__(9);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var About = function (_Component) {
+  _inherits(About, _Component);
+
+  function About() {
+    _classCallCheck(this, About);
+
+    return _possibleConstructorReturn(this, (About.__proto__ || Object.getPrototypeOf(About)).apply(this, arguments));
+  }
+
+  _createClass(About, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+          _reactHelmet.Helmet,
+          null,
+          _react2.default.createElement(
+            "title",
+            null,
+            "About"
+          ),
+          _react2.default.createElement("meta", { property: "og:title", content: "Users About" })
+        ),
+        "About"
+      );
+    }
+  }]);
+
+  return About;
+}(_react.Component);
+
+exports.default = About;
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-helmet");
 
 /***/ })
 /******/ ]);
