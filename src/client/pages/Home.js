@@ -11,7 +11,8 @@ class Home extends Component {
           <title>Homes</title>
           <meta property="og:title" content="Users Homes" />
         </Helmet>
-        Homes
+        <div className="header">Header</div>
+        <p>Homes</p>
       </div>
     );
   }

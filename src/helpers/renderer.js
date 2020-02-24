@@ -26,6 +26,7 @@ export default (req, store) => {
         </head>
         <body>
             <div id="root">${content}</div>
+            <link rel="stylesheet" type="text/css" href="styles.css"/>
             <script>
               window.INITIAL_STATE = ${serialize(store.getState())}
             </script>
