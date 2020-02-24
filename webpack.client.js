@@ -29,18 +29,30 @@ const prodConfig = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "public")
   },
-  plugins: [
-    // new BundleAnalyzerPlugin(),
-    new MiniCssExtractPlugin({ filename: "styles.css" })
-  ],
   module: {
     rules: [
       {
         test: /\.s?css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 2
+            }
+          },
+          "postcss-loader",
+          "sass-loader"
+        ]
       }
     ]
   },
+  plugins: [
+    // new BundleAnalyzerPlugin(),
+    new MiniCssExtractPlugin({ filename: "styles.css" })
+  ],
   devtool: "source-map"
 };
 
