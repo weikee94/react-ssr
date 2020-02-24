@@ -24,6 +24,7 @@ const config = {
 };
 
 const prodConfig = {
+  mode: "production",
   entry: "./src/client/client.js",
   output: {
     filename: "bundle.js",
@@ -49,11 +50,14 @@ const prodConfig = {
       }
     ]
   },
-  plugins: [
-    // new BundleAnalyzerPlugin(),
-    new MiniCssExtractPlugin({ filename: "styles.css" })
-  ],
+  plugins: [new MiniCssExtractPlugin({ filename: "styles.css" })],
   devtool: "source-map"
 };
 
-module.exports = merge(baseConfig, prodConfig);
+module.exports = env => {
+  if (env && env.production) {
+    return merge(baseConfig, prodConfig);
+  } else {
+    return merge(baseConfig, config);
+  }
+};
